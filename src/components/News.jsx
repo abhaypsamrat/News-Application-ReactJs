@@ -90,6 +90,9 @@ export default class News extends Component {
             &larr; Previous
           </button>
           <button
+            disabled={
+              this.state.page + 1 > Math.ceil(this.state.totalResults / 20)
+            }
             type="button"
             className="btn btn-info"
             onClick={this.handleNextClick}
