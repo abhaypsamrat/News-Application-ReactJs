@@ -13,7 +13,7 @@ export default class News extends Component {
 
   async componentDidMount() {
     let url =
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=0bbb3e8a886d4286b6f19eac177132c1&page=1pageSize=20";
+      `https://newsapi.org/v2/top-headlines?country=in&apiKey=0bbb3e8a886d4286b6f19eac177132c1&page=1&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     //console.log(parsedData);
@@ -30,7 +30,7 @@ export default class News extends Component {
 
     let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0bbb3e8a886d4286b6f19eac177132c1&page=${
       this.state.page - 1
-    }&pageSize=20`;
+    }&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     //console.log(parsedData);
@@ -44,11 +44,14 @@ export default class News extends Component {
 
   handleNextClick = async () => {
     console.log("Next");
-    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+    if (
+      this.state.page + 1 >
+      Math.ceil(this.state.totalResults / this.props.pageSize)
+    ) {
     } else {
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0bbb3e8a886d4286b6f19eac177132c1&page=${
         this.state.page + 1
-      }&pageSize=20`;
+      }&pageSize=${this.props.pageSize}`;
       let data = await fetch(url);
       let parsedData = await data.json();
       //console.log(parsedData);
@@ -63,7 +66,7 @@ export default class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h2 className="text-center">NewsMonkey - Top Headlines</h2>
+        <h2 className="text-center">WebNews - Top Headlines</h2>
         <div className="row">
           {this.state.articles.map((element) => {
             return (
@@ -91,7 +94,8 @@ export default class News extends Component {
           </button>
           <button
             disabled={
-              this.state.page + 1 > Math.ceil(this.state.totalResults / 20)
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.props.pageSize)
             }
             type="button"
             className="btn btn-info"
