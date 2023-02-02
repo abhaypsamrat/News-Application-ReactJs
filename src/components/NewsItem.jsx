@@ -10,7 +10,7 @@ export class NewsItem extends Component {
           <img
             src={
               !imageUrl
-                ? "https://scitechdaily.com/images/COVID-19-Deaths-Timeseries.png"
+                ? "https://media.istockphoto.com/id/1158778963/photo/online-news-article-on-tablet-screen-electronic-newspaper-or-magazine-latest-daily-press-and.jpg?s=612x612&w=0&k=20&c=SaEQzl8xcVVTFMwOHPgP5RqDxHdTBMx4-EkWoTieHhM="
                 : imageUrl
             }
             className="card-img-top"
